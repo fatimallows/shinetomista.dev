@@ -1,0 +1,33 @@
+---
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<p class="breadcrumb">
+  <a href="/">shine</a><span class="sep">›</span><span class="current"
+    >{current}</span
+  >
+</p>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 62px;
+  }
+
+  .breadcrumb a {
+    color: var(--muted);
+  }
+
+  .breadcrumb .current {
+    color: var(--ink);
+  }
+</style>

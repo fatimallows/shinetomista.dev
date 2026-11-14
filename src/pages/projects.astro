@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { shine } from "../data/shine";
+---
+
+<Layout title={`projects — ${shine.meta.title}`}>
+  <Header />
+  <main class="container page">
+    <Breadcrumb current="projects" />
+    <h1 class="page-title">projects<span class="bracket">[</span></h1>
+
+    <div class="grid">
+      {
+        shine.projects.map((p) => (
+          <article class="card">
+            <p class="card-index">
+              shine.projects[{p.index}]
+            </p>
+            <h2 class="card-name">{p.name}</h2>
+            <p class="card-desc">{p.description}</p>
+            <p class="card-open">open →</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="bracket-close">]</p>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: baseline;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
+    font-size: clamp(48px, 9vw, 104px);
+    margin: 24px 0 56px;
+  }
+
+  .bracket {
+    color: var(--pink);
+    margin-left: 6px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 800px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .card {
+    border: 1.5px solid var(--ink);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #fff;
+  }
+
+  .card-index {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .card-name {
+    font-weight: 600;
+    font-size: clamp(22px, 2.4vw, 32px);
+    letter-spacing: -0.02em;
+  }
+
+  .card-desc {
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--body);
+    line-height: 1.47;
+  }
+
+  .card-open {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    margin-top: auto;
+  }
+
+  .bracket-close {
+    color: var(--pink);
+    font-weight: 600;
+    font-size: clamp(48px, 9vw, 104px);
+    margin-top: 64px;
+  }
+</style>

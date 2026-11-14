@@ -1,0 +1,35 @@
+---
+import "@fontsource/rubik/400.css";
+import "@fontsource/rubik/500.css";
+import "@fontsource/rubik/600.css";
+import "@fontsource/rubik/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "../styles/global.css";
+import { shine } from "../data/shine";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = shine.meta.title, description = shine.meta.description } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <slot />
+    <script>
+      import { shine } from "../data/shine";
+      console.log(shine);
+    </script>
+  </body>
+</html>

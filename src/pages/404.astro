@@ -1,0 +1,87 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { shine } from "../data/shine";
+---
+
+<Layout title={`404 — ${shine.meta.title}`}>
+  <Header />
+  <main class="container notfound">
+    <p class="breadcrumb">
+      <a href="/">shine</a><span class="sep">›</span><span class="current"
+        >undefined</span
+      >
+    </p>
+    <h1 class="code"><span class="muted">shine.</span>undefined</h1>
+    <p class="message">{shine.undefined.detail}</p>
+    <pre class="console"><span class="line">&gt; shine[window.location.pathname]</span>
+<span class="line out">Uncaught TypeError: {shine.undefined.message}</span>
+<span class="line out">    at Object.render (shine.ts)</span></pre>
+    <a class="btn" href="/">return home →</a>
+  </main>
+</Layout>
+
+<style>
+  .notfound {
+    padding: 80px 0 140px;
+    min-height: 50vh;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .breadcrumb a {
+    color: var(--muted);
+  }
+
+  .breadcrumb .current {
+    color: var(--ink);
+  }
+
+  .code {
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    font-size: clamp(40px, 8vw, 88px);
+    margin: 40px 0 16px;
+  }
+
+  .message {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  .console {
+    background: var(--ink);
+    color: #eee;
+    border-radius: 12px;
+    padding: 24px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 40px;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .console .out {
+    color: var(--pink);
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px 22px;
+    border-radius: 999px;
+  }
+</style>

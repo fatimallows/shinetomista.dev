@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { shine } from "../data/shine";
+---
+
+<Layout title={`experience — ${shine.meta.title}`}>
+  <Header />
+  <main class="container page">
+    <Breadcrumb current="experience" />
+    <h1 class="page-title">experience<span class="bracket">[</span></h1>
+
+    <div class="list">
+      {
+        shine.experience.map((block) => (
+          <article class="block">
+            <div class="heading">
+              <span class="idx">[{block.index}]</span>
+              <h2 class="role">{block.role}</h2>
+              <p class="org">{block.organization}</p>
+              <p class="years">{block.years}</p>
+            </div>
+            <p class="desc">{block.description}</p>
+            <div class="photos">
+              {block.photos.map((src) => (
+                <img src={src} alt="" loading="lazy" />
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="bracket-close">]</p>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: baseline;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
+    font-size: clamp(48px, 9vw, 104px);
+    margin: 24px 0 40px;
+  }
+
+  .bracket {
+    color: var(--pink);
+    margin-left: 6px;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .block {
+    border-top: 1.5px solid var(--ink);
+    padding: 28px 0 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 40px;
+  }
+
+  .idx {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .role {
+    font-weight: 600;
+    font-size: clamp(20px, 2.6vw, 30px);
+    letter-spacing: -0.02em;
+    flex: 1 1 220px;
+  }
+
+  .org {
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--body);
+  }
+
+  .years {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .desc {
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--body);
+    line-height: 1.47;
+  }
+
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 700px) {
+    .photos {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .photos img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 700px) {
+    .photos img {
+      height: 220px;
+    }
+  }
+
+  .bracket-close {
+    color: var(--pink);
+    font-weight: 600;
+    font-size: clamp(48px, 9vw, 104px);
+    margin-top: 48px;
+  }
+</style>

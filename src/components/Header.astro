@@ -1,0 +1,91 @@
+---
+import { shine } from "../data/shine";
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">{shine.nav.logo}</a>
+    <nav class="nav">
+      {
+        shine.nav.links.map((link) => (
+          <a
+            href={link.href}
+            class="nav-link"
+            aria-current={pathname === link.href ? "page" : undefined}
+          >
+            <span class="muted">shine.</span>
+            {link.label}
+          </a>
+        ))
+      }
+      <a href={shine.nav.contact.href} class="nav-contact">
+        <span class="muted">shine.</span>{shine.nav.contact.label}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding: 38px 0 0;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .logo {
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 15px;
+  }
+
+  .nav-link {
+    color: var(--ink);
+  }
+
+  .nav-link[aria-current="page"] {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .nav-contact {
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 10px 18px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .nav {
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .logo {
+      font-size: 18px;
+    }
+
+    .nav-contact {
+      padding: 8px 14px;
+    }
+  }
+</style>
